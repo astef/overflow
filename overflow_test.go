@@ -1,10 +1,8 @@
-package overflow_test
+package overflow
 
 import (
 	"math"
 	"testing"
-
-	"github.com/g-utils/overflow"
 )
 
 // sample all possibilities of 8 bit numbers
@@ -30,7 +28,7 @@ func TestAlgorithms(t *testing.T) {
 				r64 := a64 + b64
 
 				// now the verification
-				result, ok := overflow.Add(a8, b8)
+				result, ok := Add(a8, b8)
 				if ok && int64(result) != r64 {
 					t.Errorf("failed to fail on %v + %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -47,7 +45,7 @@ func TestAlgorithms(t *testing.T) {
 				r64 := a64 - b64
 
 				// now the verification
-				result, ok := overflow.Sub(a8, b8)
+				result, ok := Sub(a8, b8)
 				if ok && int64(result) != r64 {
 					t.Errorf("failed to fail on %v - %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -63,7 +61,7 @@ func TestAlgorithms(t *testing.T) {
 				r64 := a64 * b64
 
 				// now the verification
-				result, ok := overflow.Mul(a8, b8)
+				result, ok := Mul(a8, b8)
 				if ok && int64(result) != r64 {
 					t.Errorf("failed to fail on %v * %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -80,7 +78,7 @@ func TestAlgorithms(t *testing.T) {
 				r64 := a64 / b64
 
 				// now the verification
-				result, _, ok := overflow.Quotient(a8, b8)
+				result, _, ok := Quotient(a8, b8)
 				if ok && int64(result) != r64 {
 					t.Errorf("failed to fail on %v / %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -97,11 +95,11 @@ func TestAlgorithms(t *testing.T) {
 }
 
 func TestQuotient(t *testing.T) {
-	q, r, ok := overflow.Quotient(100, 3)
+	q, r, ok := Quotient(100, 3)
 	if r != 1 || q != 33 || !ok {
 		t.Errorf("expected 100/3 => 33, r=1")
 	}
-	if _, _, ok = overflow.Quotient(1, 0); ok {
+	if _, _, ok = Quotient(1, 0); ok {
 		t.Error("unexpected lack of failure")
 	}
 }
@@ -126,7 +124,7 @@ func TestUnsignedAlgorithms(t *testing.T) {
 				r64 := a64 + b64
 
 				// now the verification
-				result, ok := overflow.Add(a8, b8)
+				result, ok := Add(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v + %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -143,7 +141,7 @@ func TestUnsignedAlgorithms(t *testing.T) {
 				r64 := a64 - b64
 
 				// now the verification
-				result, ok := overflow.Sub(a8, b8)
+				result, ok := Sub(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v - %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -159,7 +157,7 @@ func TestUnsignedAlgorithms(t *testing.T) {
 				r64 := a64 * b64
 
 				// now the verification
-				result, ok := overflow.Mul(a8, b8)
+				result, ok := Mul(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v * %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -176,7 +174,7 @@ func TestUnsignedAlgorithms(t *testing.T) {
 				r64 := a64 / b64
 
 				// now the verification
-				result, _, ok := overflow.Quotient(a8, b8)
+				result, _, ok := Quotient(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v / %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -192,11 +190,11 @@ func TestUnsignedAlgorithms(t *testing.T) {
 }
 
 func TestUnsignedQuotient(t *testing.T) {
-	q, r, ok := overflow.Quotient(100, 3)
+	q, r, ok := Quotient(100, 3)
 	if r != 1 || q != 33 || !ok {
 		t.Errorf("expected 100/3 => 33, r=1")
 	}
-	if _, _, ok = overflow.Quotient(1, 0); ok {
+	if _, _, ok = Quotient(1, 0); ok {
 		t.Error("unexpected lack of failure")
 	}
 }
@@ -223,7 +221,7 @@ func TestAlgorithmsUintImpl2(t *testing.T) {
 				r64 := a64 + b64
 
 				// now the verification
-				result, ok := overflow.Add(a8, b8)
+				result, ok := Add(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v + %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -240,7 +238,7 @@ func TestAlgorithmsUintImpl2(t *testing.T) {
 				r64 := a64 - b64
 
 				// now the verification
-				result, ok := overflow.Sub(a8, b8)
+				result, ok := Sub(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v - %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -256,7 +254,7 @@ func TestAlgorithmsUintImpl2(t *testing.T) {
 				r64 := a64 * b64
 
 				// now the verification
-				result, ok := overflow.Mul(a8, b8)
+				result, ok := Mul(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v * %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -272,8 +270,8 @@ func TestAlgorithmsUintImpl2(t *testing.T) {
 			if b8 != 0 {
 				r64 := a64 / b64
 
-				// now the verifiggcation
-				result, _, ok := overflow.Quotient(a8, b8)
+				// now the verification
+				result, _, ok := Quotient(a8, b8)
 				if ok && uint64(result) != r64 {
 					t.Errorf("failed to fail on %v / %v = %v instead of %v\n",
 						a8, b8, result, r64)
@@ -402,38 +400,38 @@ func TestConvert(t *testing.T) {
 	// "negative [u]int32|16|8 -> int64"
 }
 
-func testConvert4[T overflow.Int, U1 overflow.Int, U2 overflow.Int, U3 overflow.Int, U4 overflow.Int](t *testing.T, a T, expectOk bool) {
+func testConvert4[T Int, U1 Int, U2 Int, U3 Int, U4 Int](t *testing.T, a T, expectOk bool) {
 	t.Helper()
 	testConvert2[T, U1, U2](t, a, expectOk)
 	testConvert2[T, U3, U4](t, a, expectOk)
 }
 
-func testConvert3[T overflow.Int, U1 overflow.Int, U2 overflow.Int, U3 overflow.Int](t *testing.T, a T, expectOk bool) {
+func testConvert3[T Int, U1 Int, U2 Int, U3 Int](t *testing.T, a T, expectOk bool) {
 	t.Helper()
 	testConvert1[T, U1](t, a, expectOk)
 	testConvert1[T, U2](t, a, expectOk)
 	testConvert1[T, U3](t, a, expectOk)
 }
 
-func testConvert2[T overflow.Int, U1 overflow.Int, U2 overflow.Int](t *testing.T, a T, expectOk bool) {
+func testConvert2[T Int, U1 Int, U2 Int](t *testing.T, a T, expectOk bool) {
 	t.Helper()
 	testConvert1[T, U1](t, a, expectOk)
 	testConvert1[T, U2](t, a, expectOk)
 }
 
-func testConvert1[T overflow.Int, U overflow.Int](t *testing.T, a T, expectOk bool) {
+func testConvert1[T Int, U Int](t *testing.T, a T, expectOk bool) {
 	t.Helper()
-	if b, ok := overflow.Convert[T, U](a); expectOk && !ok {
+	if b, ok := Convert[T, U](a); expectOk && !ok {
 		t.Error("expected ok, got overflow: ", b)
 	} else if !expectOk && ok {
 		t.Error("expected overflow, got ok: ", b)
-	} else if a2, ok2 := overflow.Convert[U, T](b); ok && !ok2 {
+	} else if a2, ok2 := Convert[U, T](b); ok && !ok2 {
 		t.Error("expected ok, got ok, but reverse conversion overflowed: ", a2)
 	}
 }
 
 func BenchmarkConvert(b *testing.B) {
 	for i := int64(-1_000_000_000); i < 1_000_000_000; i++ {
-		_, _ = overflow.Convert[int64, uint64](i)
+		_, _ = Convert[int64, uint64](i)
 	}
 }
